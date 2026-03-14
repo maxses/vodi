@@ -80,3 +80,8 @@ CMakeLists.txt.user*
 .rcc/
 .uic/
 /build*/
+
+bck
+vodi-backups
+*auto-save*
+*.kicad_sch-bak
