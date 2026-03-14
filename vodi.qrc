@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/pic">
-        <file>pic/led_t.png</file>
-        <file>pic/vodi_t.png</file>
-    </qresource>
-</RCC>

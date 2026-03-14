@@ -12,18 +12,49 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
-set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
+set( CMAKE_AUTOUIC_SEARCH_PATHS 
+    src
+    src/sheets
+)
+
+include_directories(
+    src
+    src/sheets
+)
+
+set(
+    PROJECT_SOURCES
+        src/main.cpp
+        
+        src/vodigui.cpp
+        src/vodigui.hpp
+        src/vodigui.ui
+
+        src/resistor.cpp
+        src/resistor.hpp
+        
+        src/sheets/led.ui
+        src/sheets/led.hpp
+        src/sheets/led.cpp
+        src/sheets/vodi.ui
+        src/sheets/vodi.hpp
+        src/sheets/vodi.cpp
+
+        src/sheets/shunt.ui
+        src/sheets/shunt.hpp
+        src/sheets/shunt.cpp
+        
+        src/sheets/e12.ui
+        src/sheets/e12.hpp
+        src/sheets/e12.cpp
+        
+        rc/vodi.qrc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(vodi_gui
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        vodi.qrc
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET vodi_gui APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
