@@ -1,7 +1,26 @@
 #ifndef RESISTOR_HPP
 #define RESISTOR_HPP
+/**---------------------------------------------------------------------------
+ *
+ * @file    resistor.hpp
+ * @brief   Class for calulation combination of resistors
+ *
+ * Resistors can be connected in series or parallel.
+ *
+ * @date   20260322
+ * @author Maximilian Seesslen <mes@seesslen.net>
+ * @copyright SPDX-License-Identifier: Apache-2.0
+ *
+ *--------------------------------------------------------------------------*/
+
+
+/*--- Includes -------------------------------------------------------------*/
+
 
 #include <QList>
+
+
+/*--- Declarations ---------------------------------------------------------*/
 
 
 class CResistor

@@ -1,3 +1,20 @@
+/**---------------------------------------------------------------------------
+ *
+ * @file    vodigui.cpp
+ * @brief   Main Ui class for vodi
+ *
+ * Sheets can be inserted.
+ *
+ * @date   20260322
+ * @author Maximilian Seesslen <mes@seesslen.net>
+ * @copyright SPDX-License-Identifier: Apache-2.0
+ *
+ *--------------------------------------------------------------------------*/
+
+
+/*--- Includes -------------------------------------------------------------*/
+
+
 #include "vodigui.hpp"
 #include "./ui_vodigui.h"
 #include "./ui_led.h"
@@ -6,6 +23,10 @@
 #include <vodi.hpp>
 #include <shunt.hpp>
 #include <e12.hpp>
+
+
+/*--- Implementation -------------------------------------------------------*/
+
 
 CVodiGui::CVodiGui(QWidget *parent)
    : QMainWindow(parent)
@@ -55,10 +76,12 @@ CVodiGui::CVodiGui(QWidget *parent)
       connect(shortcut, SIGNAL( activated( ) ), this, SLOT(slotUnderlineToggledShortCut( )));
 }
 
+
 CVodiGui::~CVodiGui()
 {
    delete ui;
 }
+
 
 void CVodiGui::slotQuit()
 {
@@ -67,20 +90,24 @@ void CVodiGui::slotQuit()
    // m_settings.setValue( "r1", ui->spinR1->value() );
 }
 
+
 void CVodiGui::setBold( bool bold )
 {
    ui->textEdit->setFontWeight( bold ? QFont::Bold : QFont::Normal );
 }
+
 
 void CVodiGui::setItalic( bool italic )
 {
    ui->textEdit->setFontItalic( italic );
 }
 
+
 void CVodiGui::setUnderline( bool underline )
 {
    ui->textEdit->setFontUnderline( underline );
 }
+
 
 void CVodiGui::setSubscript( bool subscript )
 {
@@ -89,6 +116,7 @@ void CVodiGui::setSubscript( bool subscript )
        subscript ? QTextCharFormat::AlignSubScript : QTextCharFormat::AlignNormal );
    ui->textEdit->setCurrentCharFormat( fmt );
 }
+
 
 void CVodiGui::slotBoldToggled( /*bool checked*/ )
 {
@@ -99,6 +127,7 @@ void CVodiGui::slotBoldToggled( /*bool checked*/ )
    return;
 }
 
+
 void CVodiGui::slotItalicToggled( /*bool checked*/ )
 {
    setItalic( ui->pushItalic->isChecked() );
@@ -107,6 +136,7 @@ void CVodiGui::slotItalicToggled( /*bool checked*/ )
 
    return;
 }
+
 
 void CVodiGui::slotUnderlineToggled( /*bool checked*/ )
 {
@@ -117,6 +147,7 @@ void CVodiGui::slotUnderlineToggled( /*bool checked*/ )
    return;
 }
 
+
 void CVodiGui::slotSubscriptToggled( /*bool checked*/ )
 {
    setSubscript( ui->pushSubscript->isChecked() );
@@ -124,6 +155,7 @@ void CVodiGui::slotSubscriptToggled( /*bool checked*/ )
    
    return;
 }
+
 
 void CVodiGui::slotBoldToggledShortCut( )
 {
@@ -138,6 +170,7 @@ void CVodiGui::slotBoldToggledShortCut( )
    }
 }
 
+
 void CVodiGui::slotItalicToggledShortCut( )
 {
    QWidget* focus=qApp->focusWidget();
@@ -151,6 +184,7 @@ void CVodiGui::slotItalicToggledShortCut( )
    }
 }
 
+
 void CVodiGui::slotUnderlineToggledShortCut( )
 {
    QWidget* focus=qApp->focusWidget();
@@ -163,6 +197,7 @@ void CVodiGui::slotUnderlineToggledShortCut( )
       focus->setFocus();
    }
 }
+
 
 void CVodiGui::slotCursorMoved()
 {
@@ -179,7 +214,11 @@ void CVodiGui::slotCursorMoved()
    }
 }
 
+
 void CVodiGui::slotReset( )
 {
    m_settings.reset();
 }
+
+
+/*--- Fin ------------------------------------------------------------------*/

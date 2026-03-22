@@ -1,3 +1,9 @@
+#------------------------------------------------------------------------------
+#
+# \brief	CMakeLists.txt file for "VoDi"
+#
+#------------------------------------------------------------------------------
+
 cmake_minimum_required(VERSION 3.16)
 
 project(vodi_gui VERSION 0.1 LANGUAGES CXX)
@@ -100,3 +106,6 @@ install(TARGETS vodi_gui
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(vodi_gui)
 endif()
+
+
+#--- Fin ---------------------------------------------------------------------

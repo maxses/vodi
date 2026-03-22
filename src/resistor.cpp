@@ -1,5 +1,25 @@
+/**---------------------------------------------------------------------------
+ *
+ * @file    resistor.hpp
+ * @brief   Class for calulation combination of resistors
+ *
+ * Resistors can be connected in series or parallel.
+ *
+ * @date   20260322
+ * @author Maximilian Seesslen <mes@seesslen.net>
+ * @copyright SPDX-License-Identifier: Apache-2.0
+ *
+ *--------------------------------------------------------------------------*/
+
+
+/*--- Includes -------------------------------------------------------------*/
+
+
 #include <resistor.hpp>
 #include <QList>
+
+
+/*--- Implementation -------------------------------------------------------*/
 
 
 QList<CResistor> E12

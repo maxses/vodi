@@ -1,8 +1,28 @@
 #ifndef E12_H
 #define E12_H
+/**---------------------------------------------------------------------------
+ *
+ * @file    e12.hpp
+ * @brief   Draw a table of the resistor E12 series
+ *
+ * Not super usefull.
+ *
+ * @date   20260322
+ * @author Maximilian Seesslen <mes@seesslen.net>
+ * @copyright SPDX-License-Identifier: Apache-2.0
+ *
+ *--------------------------------------------------------------------------*/
+
+
+/*--- Includes -------------------------------------------------------------*/
+
 
 #include <QWidget>
 #include <settings.hpp>
+
+
+/*--- Declarations ---------------------------------------------------------*/
+
 
 namespace Ui {
 
@@ -23,4 +43,6 @@ class CE12 : public QWidget
    CSettings &m_settings;
 };
 
+
+/*--- Fin ------------------------------------------------------------------*/
 #endif // E12_H

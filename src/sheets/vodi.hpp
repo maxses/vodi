@@ -1,9 +1,28 @@
 #ifndef VODI_HPP
 #define VODI_HPP
+/**---------------------------------------------------------------------------
+ *
+ * @file    vodi.hpp
+ * @brief   Calculate voltages divider resistors
+ *
+ *
+ * @date   20260322
+ * @author Maximilian Seesslen <mes@seesslen.net>
+ * @copyright SPDX-License-Identifier: Apache-2.0
+ *
+ *--------------------------------------------------------------------------*/
+
+
+/*--- Includes -------------------------------------------------------------*/
+
 
 #include <QWidget>
 #include <QSettings>
 #include <settings.hpp>
+
+
+/*--- Declarations ---------------------------------------------------------*/
+
 
 namespace Ui {
 class Vodi;
@@ -28,7 +47,9 @@ private slots:
    
 private:
    void updateReadonly();
-   
+    void highlightCalculationSource( bool base );
 };
 
+
+/*--- Fin ------------------------------------------------------------------*/
 #endif // VODI_HPP

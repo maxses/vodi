@@ -1,7 +1,26 @@
+/**---------------------------------------------------------------------------
+ *
+ * @file    vodi.cpp
+ * @brief   Calculate voltages divider resistors
+ *
+ *
+ * @date   20260322
+ * @author Maximilian Seesslen <mes@seesslen.net>
+ * @copyright SPDX-License-Identifier: Apache-2.0
+ *
+ *--------------------------------------------------------------------------*/
+
+
+/*--- Includes -------------------------------------------------------------*/
+
+
 #include "vodi.hpp"
 #include "ui_vodi.h"
 #include <resistor.hpp>
 #include <uri.hpp>
+
+
+/*--- Implementation -------------------------------------------------------*/
 
 
 CVodi::CVodi(CSettings &settings, QWidget *parent) :
@@ -44,6 +63,7 @@ CVodi::~CVodi()
 
 void CVodi::slotResistorChanged()
 {
+   highlightCalculationSource( false );
    updateReadonly();
 }
 
@@ -106,6 +126,7 @@ void CVodi::slotVoltageChanged()
    ui->spinR2_2->setValue( bestR2_2.value() );
    ui->spinU2Real->setValue( bestVoltage );
    
+   highlightCalculationSource( true );
    updateReadonly();
 }
 
@@ -166,3 +187,40 @@ void CVodi::slotConfigChanged()
    
    slotVoltageChanged();
 }
+
+
+void CVodi::highlightCalculationSource( bool base )
+{
+   QFont font;
+   
+   font.setBold( true );
+   ui->labelU1->setFont(font);
+   ui->labelPMax->setFont(font);
+   
+   font.setBold( base );
+   ui->labelU2Target->setFont(font);
+   
+   font.setBold( ! base );
+   ui->labelR1->setFont(font);
+   ui->labelR1_2->setFont(font);
+   ui->labelR2->setFont(font);
+   ui->labelR2_2->setFont(font);
+   
+   font=QFont();
+   font.setStrikeOut(!base);
+   ui->spinU2Target->setFont(font);
+   
+   QString style=base ? "color: rgb(0,0,128); " : "";
+   ui->spinR1->setStyleSheet( style );
+   ui->spinR1_2->setStyleSheet( style );
+   ui->spinR2->setStyleSheet( style );
+   ui->spinR2_2->setStyleSheet( style );
+   
+   ui->spinP->setStyleSheet("color: rgb(0,0,128); ");
+   ui->spinU3->setStyleSheet("color: rgb(0,0,128); ");
+   ui->spinRTotal->setStyleSheet("color: rgb(0,0,128); ");
+   ui->spinU2Real->setStyleSheet("color: rgb(0,0,128); ");
+}
+
+
+/*--- Fin ------------------------------------------------------------------*/

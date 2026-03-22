@@ -1,7 +1,28 @@
+/**---------------------------------------------------------------------------
+ *
+ * @file    e12.cpp
+ * @brief   Draw a table of the resistor E12 series
+ *
+ * Not super usefull.
+ *
+ * @date   20260322
+ * @author Maximilian Seesslen <mes@seesslen.net>
+ * @copyright SPDX-License-Identifier: Apache-2.0
+ *
+ *--------------------------------------------------------------------------*/
+
+
+/*--- Includes -------------------------------------------------------------*/
+
+
 #include "e12.hpp"
 #include "ui_e12.h"
 #include <QLabel>
 #include <resistor.hpp>
+
+
+/*--- Implementation -------------------------------------------------------*/
+
 
 CE12::CE12(CSettings &settings, QWidget *parent)
     : QWidget(parent)
@@ -25,7 +46,11 @@ CE12::CE12(CSettings &settings, QWidget *parent)
    }
 }
 
+
 CE12::~CE12()
 {
    delete ui;
 }
+
+
+/*--- Fin ------------------------------------------------------------------*/

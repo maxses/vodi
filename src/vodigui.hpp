@@ -1,5 +1,21 @@
 #ifndef CVodiGui_H
 #define CVodiGui_H
+/**---------------------------------------------------------------------------
+ *
+ * @file    vodigui.hpp
+ * @brief   Main Ui class for vodi
+ *
+ * Sheets can be inserted.
+ *
+ * @date   20260322
+ * @author Maximilian Seesslen <mes@seesslen.net>
+ * @copyright SPDX-License-Identifier: Apache-2.0
+ *
+ *--------------------------------------------------------------------------*/
+
+
+/*--- Includes -------------------------------------------------------------*/
+
 
 #include <vodigui.hpp>
 #include <QSettings>
@@ -9,6 +25,10 @@
 #include <e12.hpp>
 #include <ui_vodigui.h>
 #include <settings.hpp>
+
+
+/*--- Declarations ---------------------------------------------------------*/
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Led; }
@@ -50,4 +70,7 @@ private slots:
    void slotReset( );
 
 };
+
+
+/*--- Fin ------------------------------------------------------------------*/
 #endif // CVodiGui_H

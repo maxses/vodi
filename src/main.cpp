@@ -1,6 +1,25 @@
-#include "vodigui.hpp"
+/**---------------------------------------------------------------------------
+ *
+ * @file    main.cpp
+ * @brief   Main file for VoDi
+ *
+ *
+ * @date   20260322
+ * @author Maximilian Seesslen <mes@seesslen.net>
+ * @copyright SPDX-License-Identifier: Apache-2.0
+ *
+ *--------------------------------------------------------------------------*/
 
+
+/*--- Includes -------------------------------------------------------------*/
+
+
+#include "vodigui.hpp"
 #include <QApplication>
+
+
+/*--- Implementation -------------------------------------------------------*/
+
 
 int main(int argc, char *argv[])
 {
@@ -13,3 +32,6 @@ int main(int argc, char *argv[])
    w.show();
    return a.exec();
 }
+
+
+/*--- Fin ------------------------------------------------------------------*/
