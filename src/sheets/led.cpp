@@ -38,7 +38,7 @@ CLed::CLed(CSettings &settings, QWidget *parent)
    ui->labelILed->setUpdatesEnabled(true);
    ui->labelR1Match->setUpdatesEnabled(true);
    
-   
+   connect( &m_settings, SIGNAL( signalSettingsChanged() ), this, SLOT( slotSettingsChanged() ) );
    connect( ui->spinU1, SIGNAL( valueChanged(double) ), this, SLOT( slotU1Changed(double) ) );
    connect( ui->spinULed, SIGNAL( valueChanged(double) ), this, SLOT( slotU1Changed(double) ) );
    connect( ui->spinILed, SIGNAL( valueChanged(double) ), this, SLOT( slotU1Changed(double) ) );
@@ -79,6 +79,19 @@ void CLed::slotU1Changed(double)
    ui->spinR1Match->setValue( CResistor( r_led ).bestMatch().value() );
    updateILedReal();
    updateP();
+}
+
+
+void CLed::slotSettingsChanged()
+{
+   if( m_calculationSource == ECalculationSource::I_LED )
+   {
+      slotU1Changed( ui->spinU1->value() );
+   }
+   else
+   {
+      slotR1Changed( ui->spinR1User->value() );
+   }
 }
 
 

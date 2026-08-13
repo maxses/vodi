@@ -1,17 +1,41 @@
 #ifndef SETTINGS_HPP
 #define SETTINGS_HPP
+/**---------------------------------------------------------------------------
+ *
+ * @file    settings.hpp
+ * @brief   Map QSettings to widgets
+ *
+ * When an widget get changed (e.g. set an checkbox), save() has to be called.
+ * The signal "signalSettingsChanged" gets emited which can be used by sheets
+ * to update calculations.
+ *
+ * @date   20260813
+ * @author Maximilian Seesslen <src@seesslen.net>
+ * @copyright SPDX-License-Identifier: Apache-2.0
+ *
+ *--------------------------------------------------------------------------*/
+
+
+/*--- Includes -------------------------------------------------------------*/
+
 
 #include <QSettings>
 #include <QDoubleSpinBox>
 #include <QTextEdit>
 #include <QVariant>
 #include <QCheckBox>
+#include <QComboBox>
+
+
+/*--- Declarations ---------------------------------------------------------*/
+
 
 enum class EType
 {
    EDouble,
    EText,
    EBoolean,
+   EIndex,
 };
 
 struct SMapEntry
@@ -22,10 +46,16 @@ struct SMapEntry
    QVariant _default;
 };
 
-class CSettings : public QSettings
+class CSettings : public QSettings //, public QObject
 {
-   //Q_OBJECT
+   Q_OBJECT
+
    QList<SMapEntry> m_mapList;
+
+public:
+
+signals:
+   void signalSettingsChanged();
 
 public:
    CSettings(){};
@@ -81,6 +111,17 @@ public:
             checkBox->setChecked( value( e.name ).toBool() );
             break;
          }
+         case EType::EIndex:
+         {
+            QComboBox *comboBox=dynamic_cast<QComboBox *>( e.widget );
+            if( !comboBox )
+            {
+               qWarning("Wrong widget type for '%s'", e.name);
+               break;
+            }
+            comboBox->setCurrentIndex( value( e.name ).toInt() );
+            break;
+         }
          default:
             qWarning("Unhandled data type: %d", (int)e.type);
             break;
@@ -109,6 +150,19 @@ public:
       setValue( name, checkBox->isChecked() );
       return;
    }
+
+   void saveIndex(QObject *widget, const char* name)
+   {
+      QComboBox *comboBox=dynamic_cast<QComboBox *>( widget );
+      if( !comboBox )
+      {
+         qWarning("Wrong widget type for '%s'", name);
+         return;
+      }
+      setValue( name, comboBox->currentIndex() );
+      return;
+   }
+
    void save()
    {
       for( const SMapEntry &e: m_mapList )
@@ -136,6 +190,11 @@ public:
                saveBool( e.widget, e.name );
                break;
             }
+            case EType::EIndex:
+            {
+               saveIndex( e.widget, e.name );
+               break;
+            }
             default:
             {
                qWarning("Unhandled data type: %d", (int)e.type);
@@ -143,6 +202,8 @@ public:
             }
          }
       }
+
+      emit( signalSettingsChanged() );
    };
 
    static void setDouble( QObject *widget, const char *name, double value)
@@ -206,4 +267,6 @@ private:
 
 };
 
+
+/*--- Fin ------------------------------------------------------------------*/
 #endif // SETTINGS_HPP

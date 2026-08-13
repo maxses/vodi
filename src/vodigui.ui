@@ -15,7 +15,60 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="2" column="0" colspan="2">
+    <item row="1" column="0" colspan="3">
+     <widget class="QGroupBox" name="groupBox">
+      <property name="title">
+       <string>Calc</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QTabWidget" name="tabWidget">
+         <property name="currentIndex">
+          <number>-1</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QComboBox" name="comboSeries">
+      <item>
+       <property name="text">
+        <string>E1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>E12</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>E24</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>E48</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="2" column="0" colspan="3">
      <widget class="QGroupBox" name="groupBox_2">
       <property name="title">
        <string>Notes</string>
@@ -24,7 +77,7 @@
        <item row="0" column="4">
         <spacer name="horizontalSpacer">
          <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
+          <enum>Qt::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -62,6 +115,7 @@
          </property>
          <property name="font">
           <font>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -117,20 +171,11 @@
       </layout>
      </widget>
     </item>
-    <item row="1" column="0" colspan="2">
-     <widget class="QGroupBox" name="groupBox">
-      <property name="title">
-       <string>Calc</string>
+    <item row="0" column="1">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Series</string>
       </property>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0">
-        <widget class="QTabWidget" name="tabWidget">
-         <property name="currentIndex">
-          <number>-1</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
      </widget>
     </item>
    </layout>

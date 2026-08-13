@@ -78,8 +78,9 @@ void CVodi::slotVoltageChanged()
    double bestVoltage=1000000;
    const QList<CResistor> &listR1_2 = ui->checkR1_2->isChecked() ? E12Limited : EOpen;
    const QList<CResistor> &listR2_2 = ui->checkR2_2->isChecked() ? E12Limited : EOpen;
-   
-   for(auto& r1:E12)
+   const QList<CResistor> &listAll = getSeries();
+
+   for(auto& r1:listAll)
    {
       for(auto& r1_2:listR1_2)
       {
@@ -89,7 +90,7 @@ void CVodi::slotVoltageChanged()
             continue;
          }
          #endif
-         for(auto& r2:E12)
+         for(auto& r2:listAll)
          {
             for( auto& r2_2:listR2_2 )
             {

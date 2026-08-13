@@ -39,7 +39,13 @@ class CE12 : public CCommon
       ~CE12();
 
    private:
-   Ui::E12 *ui;
+      Ui::E12 *ui;
+
+   private slots:
+      void updateFields();
+
+   private:
+      void clearFields();
 };
 
 

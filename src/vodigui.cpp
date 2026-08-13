@@ -38,6 +38,8 @@ CVodiGui::CVodiGui(QWidget *parent)
 
    m_settings.append( { { "notes", ui->textEdit, EType::EText, "Evaluation:\n" },
                       } );
+   m_settings.append( { { "series", ui->comboSeries, EType::EIndex, "0" },
+                      } );
 
    ui->pushBold->setMaximumWidth(24);
    ui->pushItalic->setMaximumWidth(24);
@@ -53,9 +55,11 @@ CVodiGui::CVodiGui(QWidget *parent)
    ui->tabWidget->addTab( m_shunt, QString("Shunt"));
    
    m_e12 = new CE12( m_settings, parent);
-   ui->tabWidget->addTab( m_e12, QString("E12"));
+   ui->tabWidget->addTab( m_e12, QString("E series"));
    
    m_settings.load();
+
+   connect( ui->comboSeries, SIGNAL( currentIndexChanged( int ) ), this, SLOT( slotUpdateSetting( ) ) );
 
    connect( ui->actionReset, SIGNAL( triggered() ), this, SLOT( slotReset( ) ) );
 
@@ -218,6 +222,12 @@ void CVodiGui::slotCursorMoved()
 void CVodiGui::slotReset( )
 {
    m_settings.reset();
+}
+
+
+void CVodiGui::slotUpdateSetting( )
+{
+    m_settings.save();
 }
 
 

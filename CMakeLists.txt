@@ -55,7 +55,9 @@ set(
         src/sheets/e12.ui
         src/sheets/e12.hpp
         src/sheets/e12.cpp
-        
+
+        src/settings.hpp
+
         rc/vodi.qrc
 )
 

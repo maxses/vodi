@@ -68,6 +68,7 @@ private slots:
    // void slotSubscriptToggledShortCut( );
    void slotCursorMoved( );
    void slotReset( );
+   void slotUpdateSetting( );
 
 };
 
