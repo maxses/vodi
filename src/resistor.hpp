@@ -73,6 +73,7 @@ class CResistor
       }
       
       CResistor bestMatch();
+      CResistor bestMatch(const QList<CResistor>& series);
       bool operator <(const CResistor &other) const
       {
          return( m_value < other.m_value );
@@ -83,10 +84,13 @@ class CResistor
       }
 };
 
-extern QList<CResistor> E12;
-extern QList<CResistor> E12Limited;
-extern QList<CResistor> EOpen;
-extern QList<CResistor> E24;
+extern const QList<CResistor> E1;
+extern const QList<CResistor> E12;
+extern const QList<CResistor> E12Limited;
+extern const QList<CResistor> EOpen;
+extern const QList<CResistor> E24;
+extern const QList<CResistor> E48;
+extern const QList<CResistor> E96;
 
 
 /*--- Fin -------------------------------------------------------------------*/
