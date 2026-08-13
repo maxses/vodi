@@ -69,9 +69,9 @@ void CShunt::slotVoltageChanged(double)
 }
 
 
-void CShunt::highlightCalculationSource( bool base )
+void CShunt::highlightCalculationSource( ECalculationSource calcSource )
 {
-   ui->spinULoad->setStyleSheet("color: rgb(0,0,128); ");
+   ui->spinU_Load->setStyleSheet("color: rgb(0,0,128); ");
    ui->spinPTotal->setStyleSheet("color: rgb(0,0,128); ");
    ui->spinPShunt->setStyleSheet("color: rgb(0,0,128); ");
    ui->spinPLoad->setStyleSheet("color: rgb(0,0,128); ");

@@ -37,7 +37,15 @@ public:
 
 private:
    Ui::Shunt *ui;
-   void highlightCalculationSource( bool base );
+
+   enum class ECalculationSource
+   {
+      Voltage,
+      Resistor,
+   };
+
+   void updateAll();
+   void highlightCalculationSource( ECalculationSource calcSource );
 
 private slots:
    void slotVoltageChanged(double);
