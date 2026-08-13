@@ -18,7 +18,7 @@
 
 
 #include <QWidget>
-#include <settings.hpp>
+#include <common.hpp>
 
 
 /*--- Declarations ---------------------------------------------------------*/
@@ -30,17 +30,16 @@ class E12;
 
 }
 
-class CE12 : public QWidget
+class CE12 : public CCommon
 {
    Q_OBJECT
 
    public:
-   explicit CE12(CSettings &settings, QWidget *parent = nullptr);
-   ~CE12();
+      explicit CE12(CSettings &settings, QWidget *parent = nullptr);
+      ~CE12();
 
    private:
    Ui::E12 *ui;
-   CSettings &m_settings;
 };
 
 

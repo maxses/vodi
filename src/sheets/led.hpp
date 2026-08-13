@@ -18,7 +18,8 @@
 
 #include <QWidget>
 #include <QSettings>
-#include <settings.hpp>
+// #include <settings.hpp>
+#include <common.hpp>
 
 
 /*--- Declarations ---------------------------------------------------------*/
@@ -28,7 +29,7 @@ namespace Ui {
 class Led;
 }
 
-class CLed : public QWidget
+class CLed : public CCommon
 {
    Q_OBJECT
 

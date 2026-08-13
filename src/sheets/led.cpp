@@ -22,10 +22,10 @@
 /*--- Implementation -------------------------------------------------------*/
 
 
-CLed::CLed(CSettings &settings, QWidget *parent) :
-   QWidget(parent),
-   m_settings(settings),
-   ui(new Ui::Led)
+CLed::CLed(CSettings &settings, QWidget *parent)
+   :CCommon( settings, parent )
+   //m_settings(settings),
+   ,ui(new Ui::Led)
 {
    ui->setupUi(this);
 

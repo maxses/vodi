@@ -23,10 +23,9 @@
 /*--- Implementation -------------------------------------------------------*/
 
 
-CVodi::CVodi(CSettings &settings, QWidget *parent) :
-   QWidget(parent),
-   m_settings(settings),
-   ui(new Ui::Vodi)
+CVodi::CVodi(CSettings &settings, QWidget *parent)
+   :CCommon( settings, parent)
+   ,ui(new Ui::Vodi)
 {
    ui->setupUi(this);
 

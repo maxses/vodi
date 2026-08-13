@@ -25,9 +25,8 @@
 
 
 CE12::CE12(CSettings &settings, QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::E12)
-    , m_settings( settings )
+   :CCommon( settings, parent )
+   , ui(new Ui::E12)
 {
    ui->setupUi(this);
    QLabel *label;

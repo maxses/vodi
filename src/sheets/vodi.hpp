@@ -17,8 +17,7 @@
 
 
 #include <QWidget>
-#include <QSettings>
-#include <settings.hpp>
+#include <common.hpp>
 
 
 /*--- Declarations ---------------------------------------------------------*/
@@ -28,7 +27,7 @@ namespace Ui {
 class Vodi;
 }
 
-class CVodi : public QWidget
+class CVodi : public CCommon
 {
    Q_OBJECT
 
@@ -38,7 +37,6 @@ public:
 
 private:
    Ui::Vodi *ui;
-   CSettings &m_settings;
 
 private slots:
    void slotVoltageChanged();

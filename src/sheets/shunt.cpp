@@ -23,10 +23,9 @@
 /*--- Implementation -------------------------------------------------------*/
 
 
-CShunt::CShunt(CSettings &settings, QWidget *parent) :
-   QWidget(parent),
-   m_settings(settings),
-   ui(new Ui::Shunt)
+CShunt::CShunt(CSettings &settings, QWidget *parent)
+   :CCommon( settings, parent)
+   , ui(new Ui::Shunt)
 {
    ui->setupUi(this);
 

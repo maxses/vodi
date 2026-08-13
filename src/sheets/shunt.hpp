@@ -17,8 +17,7 @@
 
 
 #include <QWidget>
-#include <QSettings>
-#include <settings.hpp>
+#include <common.hpp>
 
 
 /*--- Declarations ---------------------------------------------------------*/
@@ -28,9 +27,9 @@ namespace Ui {
 class Shunt;
 }
 
-class CShunt : public QWidget
+class CShunt : public CCommon
 {
-   Q_OBJECT
+    Q_OBJECT
 
 public:
    explicit CShunt(CSettings &settings, QWidget *parent = nullptr);
@@ -38,8 +37,6 @@ public:
 
 private:
    Ui::Shunt *ui;
-   CSettings &m_settings;
-   
    void highlightCalculationSource( bool base );
 
 private slots:

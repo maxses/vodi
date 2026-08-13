@@ -39,6 +39,8 @@ set(
         src/resistor.cpp
         src/resistor.hpp
         
+        src/sheets/common.hpp
+        src/sheets/common.cpp
         src/sheets/led.ui
         src/sheets/led.hpp
         src/sheets/led.cpp
