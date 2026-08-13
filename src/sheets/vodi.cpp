@@ -39,7 +39,8 @@ CVodi::CVodi(CSettings &settings, QWidget *parent)
                         { "vodi/r2_2_e", ui->checkR2_2, EType::EBoolean, true },
                         { "vodi/pmax", ui->spinPMax, EType::EDouble, 0.1 },
                       } );
-   
+
+   connect( &m_settings, SIGNAL( signalSettingsChanged() ), this, SLOT( slotVoltageChanged() ) );
    connect( ui->spinU1, SIGNAL( valueChanged(double) ), this, SLOT( slotVoltageChanged() ) );
    connect( ui->spinU2Target, SIGNAL( valueChanged(double) ), this, SLOT( slotVoltageChanged() ) );
    connect( ui->spinPMax, SIGNAL( valueChanged(double) ), this, SLOT( slotVoltageChanged() ) );
@@ -47,9 +48,12 @@ CVodi::CVodi(CSettings &settings, QWidget *parent)
    connect( ui->spinR2, SIGNAL( valueChanged(double) ), this, SLOT( slotResistorChanged() ) );
    connect( ui->spinR1_2, SIGNAL( valueChanged(double) ), this, SLOT( slotResistorChanged() ) );
    connect( ui->spinR2_2, SIGNAL( valueChanged(double) ), this, SLOT( slotResistorChanged() ) );
-   connect( ui->checkR1_2, SIGNAL( checkStateChanged(Qt::CheckState) ), this, SLOT( slotConfigChanged() ) );
-   connect( ui->checkR2_2, SIGNAL( checkStateChanged(Qt::CheckState) ), this, SLOT( slotConfigChanged() ) );
-   
+   // The signal "checkStateChanged(Qt::CheckState)" was introduced in Qt 6.7
+   //connect( ui->checkR1_2, SIGNAL( checkStateChanged(Qt::CheckState) ), this, SLOT( slotConfigChanged() ) );
+   //connect( ui->checkR2_2, SIGNAL( checkStateChanged(Qt::CheckState) ), this, SLOT( slotConfigChanged() ) );
+   connect( ui->checkR1_2, SIGNAL( stateChanged( int )), this, SLOT( slotConfigChanged() ) );
+   connect( ui->checkR2_2, SIGNAL( stateChanged( int )), this, SLOT( slotConfigChanged() ) );
+
    slotConfigChanged( );
    slotVoltageChanged( );
 }
@@ -155,6 +159,7 @@ void CVodi::updateReadonly()
    double i_total=ui->spinU1->value() / r_total;
    
    ui->spinRTotal->setValue( r_total );
+   ui->spinI_Total->setValue( i_total );
    ui->spinP->setValue( ui->spinU1->value() * i_total );
 }
 

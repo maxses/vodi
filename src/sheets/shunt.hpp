@@ -48,7 +48,7 @@ private:
    void highlightCalculationSource( ECalculationSource calcSource );
 
 private slots:
-   void slotVoltageChanged(double);
+   void slotTotalVoltageChanged(double);
    void slotResistorChanged(double);
 };
 

@@ -31,13 +31,13 @@ CShunt::CShunt(CSettings &settings, QWidget *parent)
 
    m_settings.append( { { "shunt/r_shunt", ui->spinRShunt, EType::EDouble, 0.030 },
                         { "shunt/i_total", ui->spinITotal, EType::EDouble, 1.5 },
-                        { "shunt/u1", ui->spinU1, EType::EDouble, 24.0 },
+                        { "shunt/u_shunt", ui->spinU_Shunt, EType::EDouble, 24.0 },
                       } );
    
    connect( ui->spinRShunt, SIGNAL( valueChanged(double) ), this, SLOT( slotResistorChanged(double) ) );
    connect( ui->spinITotal, SIGNAL( valueChanged(double) ), this, SLOT( slotResistorChanged(double) ) );
-   connect( ui->spinU2, SIGNAL( valueChanged(double) ), this, SLOT( slotVoltageChanged(double) ) );
-   connect( ui->spinU1, SIGNAL( valueChanged(double) ), this, SLOT( slotResistorChanged(double) ) );
+   connect( ui->spinU_Total, SIGNAL( valueChanged(double) ), this, SLOT( slotTotalVoltageChanged(double) ) );
+   connect( ui->spinU_Shunt, SIGNAL( valueChanged(double) ), this, SLOT( slotResistorChanged(double) ) );
    
    slotResistorChanged( 0.0 );
 }
@@ -48,24 +48,42 @@ CShunt::~CShunt()
 }
 
 
-void CShunt::slotResistorChanged(double)
+void CShunt::updateAll()
 {
-   double U = ui->spinRShunt->value() * ui->spinITotal->value();
-   
-   highlightCalculationSource( true );
-       
-   ui->spinU2->setValue( U );
-   ui->spinPTotal->setValue( ui->spinU1->value() * ui->spinITotal->value() );
+   double U_Shunt = CURI( ui->spinU_Total->value(), ui->spinRShunt->value(),
+                          ui->spinITotal->value()).calcVoltage();
+
+   ui->spinU_Shunt->setValue( U_Shunt );
+   ui->spinPTotal->setValue( ui->spinU_Total->value() * ui->spinITotal->value() );
+
+   ui->spinU_Load->setValue( ui->spinU_Total->value() - U_Shunt);
+   ui->spinPShunt->setValue( U_Shunt * ui->spinITotal->value() );
+   ui->spinPLoad->setValue( ui->spinU_Load->value() * ui->spinITotal->value() );
 }
 
 
-void CShunt::slotVoltageChanged(double)
+void CShunt::slotResistorChanged(double)
 {
-   highlightCalculationSource( false );
+   double U_Shunt = ui->spinRShunt->value() * ui->spinITotal->value();
+   
+   highlightCalculationSource( ECalculationSource::Resistor );
+       
+   ui->spinU_Shunt->setValue( U_Shunt );
+   ui->spinPTotal->setValue( ui->spinU_Total->value() * ui->spinITotal->value() );
+
+   updateAll();
+}
+
+
+void CShunt::slotTotalVoltageChanged(double)
+{
+   highlightCalculationSource( ECalculationSource::Voltage );
    
    ui->spinITotal->setValue(
-       CURI( ui->spinU2->value(), ui->spinRShunt->value(), ui->spinITotal->value() ).calcCurrent()
+       CURI( ui->spinU_Shunt->value(), ui->spinRShunt->value(), ui->spinITotal->value() ).calcCurrent()
        );
+
+   updateAll();
 }
 
 
