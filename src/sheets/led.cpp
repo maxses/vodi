@@ -73,10 +73,11 @@ void CLed::slotU1Changed(double)
    ui->labelR1User->setFont(font);
    ui->labelR1User->repaint();
    #endif
-   highlightCalculationSource( true );
+   highlightCalculationSource( ECalculationSource::I_LED );
    
+   const QList<CResistor> &listAll = getSeries();
    ui->spinR1->setValue( r_led );
-   ui->spinR1Match->setValue( CResistor( r_led ).bestMatch().value() );
+   ui->spinR1Match->setValue( CResistor( r_led ).bestMatch( listAll ).value() );
    updateILedReal();
    updateP();
 }
@@ -156,7 +157,7 @@ void CLed::slotR1Changed(double)
    ui->labelILed->repaint();
    #endif
    
-   highlightCalculationSource(false);
+   highlightCalculationSource( ECalculationSource::R1_USER );
        
    ui->spinR1Match->setValue( ui->spinR1User->value() );
    updateILedReal();
@@ -173,22 +174,26 @@ void CLed::updateILedReal()
 }
 
 
-void CLed::highlightCalculationSource( bool base )
+void CLed::highlightCalculationSource( ECalculationSource calcSource )
 {
+    // base=true: calculate by I_LED
+    // base=false: calculate by R1_User
    QFont font;
-   font.setBold( base );
+
+   m_calculationSource = calcSource;
+
+   font.setBold( calcSource == ECalculationSource::I_LED );
    ui->labelILed->setFont(font);
    
-   font.setBold( ! base );
+   font.setBold( calcSource == ECalculationSource::R1_USER );
    ui->labelR1User->setFont(font);
    
    font=QFont();
-   font.setStrikeOut( base );
+   font.setStrikeOut( calcSource == ECalculationSource::I_LED );
    ui->spinR1User->setFont(font);
    
-   font.setStrikeOut( !base );
+   font.setStrikeOut( calcSource == ECalculationSource::R1_USER );
    ui->spinR1->setFont(font);
-   
    
    ui->spinR1->setStyleSheet("color: rgb(0,0,128); ");
    ui->spinR1Match->setStyleSheet("color: rgb(0,0,128); ");

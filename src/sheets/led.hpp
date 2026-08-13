@@ -36,18 +36,24 @@ class CLed : public CCommon
 public:
    explicit CLed(CSettings &settings, QWidget *parent = nullptr);
    ~CLed();
+   enum class ECalculationSource
+   {
+       I_LED,
+       R1_USER
+   };
 
 private:
    Ui::Led *ui;
-   CSettings &m_settings;
+   ECalculationSource m_calculationSource=ECalculationSource::I_LED;
    
    void updateILedReal();
    void updateP();
-   void highlightCalculationSource( bool base );
+   void highlightCalculationSource( ECalculationSource calcSource );
        
 private slots:
    void slotU1Changed(double);
    void slotR1Changed(double);
+   void slotSettingsChanged();
 
 };
 
