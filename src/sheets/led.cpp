@@ -17,6 +17,7 @@
 #include "led.hpp"
 #include "ui_led.h"
 #include <resistor.hpp>
+#include <QDebug>
 
 
 /*--- Implementation -------------------------------------------------------*/
